@@ -10,21 +10,19 @@ import { ChatOpenRouter } from "@langchain/openrouter";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
 // ---------------------------------------------------------------------------
-// System prompt — the "only answer from context" instruction
+// System prompt
 //
-// Why this matters:
-// Without this constraint, the LLM might answer from its training data
-// instead of the uploaded document. That defeats the purpose of RAG — the
-// user uploaded a *specific* document and wants answers from *that* document.
-// The system prompt makes the model refuse gracefully when the context
-// doesn't contain the answer, rather than making something up.
+// By default, RAG systems are constrained to ONLY answer from context.
+// However, per your request, we are modifying this to allow the LLM to
+// fallback to its external general knowledge if the PDF doesn't contain the answer!
 // ---------------------------------------------------------------------------
 
-const SYSTEM_PROMPT = `You are StudyMate AI. Answer the user's question using only the provided document context. If the answer cannot be found in the provided context, clearly say that the information is not available in the uploaded document. Do not invent information.
+const SYSTEM_PROMPT = `You are StudyMate AI. First, try to answer the user's question using ONLY the provided document context. 
+If the answer cannot be found in the provided context, you may use your external general knowledge to answer the question. 
+However, if you do use external knowledge, you MUST clearly state: "This information is not in the uploaded document, but based on general knowledge..."
 
 When answering:
 - Be clear and concise
-- Use the exact information from the context
 - If the context partially answers the question, share what you can and note what's missing`;
 
 /**
