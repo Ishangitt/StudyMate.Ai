@@ -1,21 +1,18 @@
 import { useState, useRef } from "react";
 import axios from "axios";
 
-// ---------------------------------------------------------------------------
-// Status progression shown to the user during processing
-// ---------------------------------------------------------------------------
 
 const STATUS_MESSAGES = {
   idle: null,
   uploading: "Uploading PDF...",
   processing: "Processing document & creating embeddings...",
   ready: "Document ready — ask your questions below!",
-  error: null, // error message is dynamic
+  error: null, 
 };
 
 export default function FileUpload({ onDocumentReady }) {
   const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("idle"); // idle | uploading | processing | ready | error
+  const [status, setStatus] = useState("idle"); 
   const [errorMsg, setErrorMsg] = useState("");
   const [chunkCount, setChunkCount] = useState(0);
   const fileInputRef = useRef(null);
@@ -23,7 +20,6 @@ export default function FileUpload({ onDocumentReady }) {
   const handleFileChange = (e) => {
     const selected = e.target.files?.[0];
     if (selected) {
-      // Reset state for a new file
       setFile(selected);
       setStatus("idle");
       setErrorMsg("");
@@ -33,7 +29,6 @@ export default function FileUpload({ onDocumentReady }) {
   const handleUpload = async () => {
     if (!file) return;
 
-    // Validate file type client-side (server also validates)
     if (file.type !== "application/pdf") {
       setStatus("error");
       setErrorMsg("Please select a PDF file.");
@@ -46,7 +41,6 @@ export default function FileUpload({ onDocumentReady }) {
       const formData = new FormData();
       formData.append("pdf", file);
 
-      // Short delay so the "uploading" state is visible
       setStatus("processing");
 
       const apiUrl = import.meta.env.VITE_API_URL || "";
