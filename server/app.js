@@ -16,7 +16,7 @@ app.use(express.json());
 // Allow cross-origin requests from any domain (useful for Render deployment)
 app.use(
   cors({
-    origin: "*",
+    origin: "https://studymate-ai-frontend-y5tj.onrender.com",
     methods: ["GET", "POST", "OPTIONS"],
   })
 );
