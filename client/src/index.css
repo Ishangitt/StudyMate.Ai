@@ -1,13 +1,9 @@
-/* Google Fonts — Inter (must be first) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ---------------------------------------------------------------------------
-   Global styles & dark theme foundation
-   --------------------------------------------------------------------------- */
 
 :root {
   --bg-primary: #0a0f1a;
@@ -41,9 +37,6 @@ body {
   flex-direction: column;
 }
 
-/* ---------------------------------------------------------------------------
-   Custom scrollbar (webkit)
-   --------------------------------------------------------------------------- */
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -62,9 +55,6 @@ body {
   background: rgba(99, 102, 241, 0.5);
 }
 
-/* ---------------------------------------------------------------------------
-   Glassmorphism card utility
-   --------------------------------------------------------------------------- */
 
 @layer components {
   .glass-card {
@@ -96,9 +86,6 @@ body {
   }
 }
 
-/* ---------------------------------------------------------------------------
-   Loading dots animation
-   --------------------------------------------------------------------------- */
 
 .loading-dots span {
   animation: loadingDot 1.4s infinite both;
