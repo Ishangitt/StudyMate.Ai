@@ -1,0 +1,2 @@
+# This directory stores uploaded PDF files.
+# It is gitignored — uploaded files are not committed to version control.

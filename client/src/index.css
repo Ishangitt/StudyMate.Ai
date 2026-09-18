@@ -1,0 +1,124 @@
+/* Google Fonts — Inter (must be first) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Global styles & dark theme foundation
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg-primary: #0a0f1a;
+  --bg-secondary: #111827;
+  --bg-card: rgba(30, 41, 59, 0.5);
+  --border-subtle: rgba(99, 102, 241, 0.15);
+  --accent-from: #6366f1;
+  --accent-to: #8b5cf6;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------------------------
+   Custom scrollbar (webkit)
+   --------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* ---------------------------------------------------------------------------
+   Glassmorphism card utility
+   --------------------------------------------------------------------------- */
+
+@layer components {
+  .glass-card {
+    @apply rounded-2xl border border-white/[0.06];
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400;
+  }
+
+  .btn-primary {
+    @apply relative px-6 py-2.5 rounded-xl font-medium text-white text-sm
+           bg-gradient-to-r from-indigo-500 to-violet-500
+           hover:from-indigo-400 hover:to-violet-400
+           transition-all duration-300 ease-out
+           shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-indigo-500/25;
+  }
+
+  .btn-secondary {
+    @apply px-5 py-2.5 rounded-xl font-medium text-sm
+           text-slate-300 border border-white/10
+           hover:bg-white/5 hover:border-white/20
+           transition-all duration-300 ease-out
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Loading dots animation
+   --------------------------------------------------------------------------- */
+
+.loading-dots span {
+  animation: loadingDot 1.4s infinite both;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loadingDot {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
